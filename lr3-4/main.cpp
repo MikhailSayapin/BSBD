@@ -20,19 +20,19 @@ int main(int argc, char *argv[])
 
 	string in, out, err, path, temp;
 	//Присвоимаргументы строковым переменным
-	stdin = argv[1]; stdout = argv[2]; stderr = argv[3]; path = argv[4];
+	stdin = (argv[1]).c_str(); stdout = (argv[2]).c_str(); stderr = (argv[3]).c_str(); path = (argv[4]).c_str();
 
 	if(stdin == "default")
 	{
 		//Сохранение содержимого потока ввода в temp
 		getline(cin, temp);
 		if(stdout == "default")
-			cout << "Output is OK. String content: " << "\t" << temp << argv[1] << endl;
+			cout << "Output is OK. String content: " << temp << endl;
 		else
 		{
 			fout.open("out.txt");
 			if(!fout.is_open()) cout << "Error with output file" << endl;
-			fout << "Output is OK. String content: " << "\t" << temp << argv[1] << endl;
+			fout << "Output is OK. String content: " << temp << endl;
 			fout.close();
 		}
 
@@ -51,6 +51,25 @@ int main(int argc, char *argv[])
 		fin.open("in.txt");
 		if(!fin.is_open()) cout << "Error with imput file" << endl;
 		getline(fin, temp);
+		if(stdout == "default")
+			cout << "Output is OK. String content: " << temp << endl;
+		else
+		{
+			fout.open("out.txt");
+			if(!fout.is_open()) cout << "Error with output file" << endl;
+			fout << "Output is OK. String content: " << temp << endl;
+			fout.close();
+		}
+		
+		if(stderr == "default")
+			cerr << "Error found" << endl;
+		else
+		{
+			ferr.open("err.txt");
+			if(!ferr.is_open()) cout << "Error with output file" << endl;
+			ferr << "Error found" << endl;
+			ferr.close();
+		}
 		fin.close();
 	}
 }
