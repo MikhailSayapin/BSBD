@@ -20,3 +20,8 @@ esac shift done
 
 APP_PATH=$1 #путь до приложения
 ./$APP_PATH #его запуск
+
+read text
+echo "$text"
+echo "output_stream"
+echo "error_stream" >&2
